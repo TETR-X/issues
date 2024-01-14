@@ -1,0 +1,20 @@
+name: Mark stale issues and pull requests
+
+on:
+  schedule:
+  - cron: "*/10 * * * *"
+
+jobs:
+  stale:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/stale@v3
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        stale-issue-message: 'This bug report has not seen any activity in a while. If the issue is still relevant, please comment on it or the issue will be automatically closed. This way, the issue tracker can be kept clean. Thank you!'
+        stale-issue-label: 'stale'
+        days-before-stale: 90
+        days-before-close: 15
+        exempt-issue-labels: 'priority, never-stale, improvement' 
